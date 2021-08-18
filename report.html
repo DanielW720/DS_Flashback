@@ -13971,8 +13971,8 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<center> <h1> <b> Data Science på Flashback </b> <br> ...i dubbel bemärkelse </h1> </center><p>Daniel Westerlund <br>
-westerlund@gmail.com <br>
+<h1 id="Data-Science-p%C3%A5-Flashback">Data Science p&#229; Flashback<a class="anchor-link" href="#Data-Science-p%C3%A5-Flashback">&#182;</a></h1><p>Daniel Westerlund \
+westerlund@gmail.com \
 2021-08-15</p>
 
 </div>
@@ -14118,20 +14118,24 @@ westerlund@gmail.com <br>
 <span class="n">date_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">first_post</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">link</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">html_text</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span><span class="s2">&quot;Chrome/78.0.3904.87&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Collect date</span>
-    <span class="n">date_of_post</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;post-heading&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">date_of_post</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">)|(Igår)|(Idag)&quot;</span><span class="p">,</span> <span class="n">date_of_post</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">html_text</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span><span class="s2">&quot;Chrome/78.0.3904.87&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Collect date</span>
+        <span class="n">date_of_post</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;post-heading&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">date_of_post</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">-\d</span><span class="si">{2}</span><span class="s2">)|(Igår)|(Idag)&quot;</span><span class="p">,</span> <span class="n">date_of_post</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Collect first post</span>
-    <span class="n">post</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;post_message&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># Collect first post</span>
+        <span class="n">post</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;post_message&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
-    <span class="c1"># Store date and post in their arrays</span>
-    <span class="n">date_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date_array</span><span class="p">,</span> <span class="n">date_of_post</span><span class="p">)</span>
-    <span class="n">first_post</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_post</span><span class="p">,</span> <span class="n">post</span><span class="p">)</span>
+        <span class="c1"># Store date and post in their arrays</span>
+        <span class="n">date_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date_array</span><span class="p">,</span> <span class="n">date_of_post</span><span class="p">)</span>
+        <span class="n">first_post</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_post</span><span class="p">,</span> <span class="n">post</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error on index &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;. Link: &#39;</span><span class="o">+</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">continue</span>
 
 <span class="c1"># Add to data frame</span>
 <span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_array</span>
@@ -14152,7 +14156,7 @@ westerlund@gmail.com <br>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
@@ -14189,13 +14193,13 @@ westerlund@gmail.com <br>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Den slutgiltiga data frame:en 2258 rader $\cdot$ 8 kolumner stor och ser ut enligt följande:</p>
+<p>Den slutgiltiga data frame:en är 2258 rader $\cdot$ 8 kolumner stor och ser ut enligt följande:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Glimpse of data frame</span>
@@ -14215,7 +14219,7 @@ westerlund@gmail.com <br>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -14280,7 +14284,7 @@ westerlund@gmail.com <br>
       <td>https://www.flashback.org/t3341086</td>
       <td>Utbildning och studier</td>
       <td>2021-07-14</td>
-      <td>Känns konstigt \r\nBehöver inte Umeå med omne...</td>
+      <td>Känns konstigt \r\nBehöver inte Umeå med omnej...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -14316,7 +14320,7 @@ westerlund@gmail.com <br>
       <td>...</td>
     </tr>
     <tr>
-      <th>2253</th>
+      <th>2254</th>
       <td>Dataingenjör och Elektroingenjör!</td>
       <td>2011-02-01</td>
       <td>2</td>
@@ -14327,7 +14331,7 @@ westerlund@gmail.com <br>
       <td>Hej, jag är 20 bast och sitter och tänker på v...</td>
     </tr>
     <tr>
-      <th>2254</th>
+      <th>2255</th>
       <td>Arbetsprover för webbutvecklare(som söker jobb)</td>
       <td>2011-02-01</td>
       <td>7</td>
@@ -14338,7 +14342,7 @@ westerlund@gmail.com <br>
       <td>Jag söker jobb som programmerare/webbutvecklar...</td>
     </tr>
     <tr>
-      <th>2255</th>
+      <th>2256</th>
       <td>Vilka Utbildningar krävs för att bli Datatekni...</td>
       <td>2011-01-30</td>
       <td>11</td>
@@ -14349,7 +14353,7 @@ westerlund@gmail.com <br>
       <td>Hej!\n\r\nSom rubriken lyder;\nVilka Utbildnin...</td>
     </tr>
     <tr>
-      <th>2256</th>
+      <th>2257</th>
       <td>Systemutvecklare i grannländerna</td>
       <td>2011-01-27</td>
       <td>1</td>
@@ -14360,7 +14364,7 @@ westerlund@gmail.com <br>
       <td>Är idag systemutvecklare på ett mindre företag...</td>
     </tr>
     <tr>
-      <th>2257</th>
+      <th>2258</th>
       <td>Chalmers eller umeå? (data)</td>
       <td>2011-01-26</td>
       <td>1</td>
@@ -14372,7 +14376,231 @@ westerlund@gmail.com <br>
     </tr>
   </tbody>
 </table>
-<p>2258 rows × 8 columns</p>
+<p>2259 rows × 8 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Temporary code block</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">flashback_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;flashback_filtered_df.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;windows-1252&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">todays_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">yesterdays_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">to_date</span><span class="p">(</span><span class="n">date_string</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Helper function for coverting strings to correct date on the form Y-m-d&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">date_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Idag&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">todays_date</span>
+    <span class="k">elif</span> <span class="n">date_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Igår&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">yesterdays_date</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">date_string</span>
+
+
+<span class="c1"># Correct &#39;date&#39; and &#39;last_response&#39; for observations where value = &#39;Idag ...&#39; or value = &#39;Igår ...&#39;</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;last_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;last_response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">to_date</span><span class="p">)</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">to_date</span><span class="p">)</span>
+
+<span class="c1"># Convert &#39;date&#39; and &#39;last_response&#39; to date type, &#39;responses&#39; and &#39;views&#39; to int type</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;last_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;last_response&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">)</span>
+<span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">flashback_df</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">)</span>
+
+<span class="c1"># Glimpse of data frame</span>
+<span class="n">flashback_df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>last_response</th>
+      <th>responses</th>
+      <th>views</th>
+      <th>link</th>
+      <th>categorie</th>
+      <th>date</th>
+      <th>first_post</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Kurslitteratur online - Programmering 1 python</td>
+      <td>2021-08-03</td>
+      <td>0</td>
+      <td>285</td>
+      <td>https://www.flashback.org/t3345728</td>
+      <td>Utbildning och studier</td>
+      <td>2021-08-03</td>
+      <td>Någon som vet var man kan hitta boken: program...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Datateknik KTH</td>
+      <td>2021-08-03</td>
+      <td>1</td>
+      <td>551</td>
+      <td>https://www.flashback.org/t3319003</td>
+      <td>Utbildning och studier</td>
+      <td>2021-04-10</td>
+      <td>Nu är det så att jag har börjat få intresse fö...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Varför finns ingen YH programmerings utbildnin...</td>
+      <td>2021-07-27</td>
+      <td>1</td>
+      <td>437</td>
+      <td>https://www.flashback.org/t3341086</td>
+      <td>Utbildning och studier</td>
+      <td>2021-07-14</td>
+      <td>Känns konstigt \r\nBehöver inte Umeå med omnej...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Examenstitlar vid datateknik/-vetenskap?</td>
+      <td>2021-07-26</td>
+      <td>6</td>
+      <td>551</td>
+      <td>https://www.flashback.org/t3342856</td>
+      <td>Utbildning och studier</td>
+      <td>2021-07-22</td>
+      <td>Jag har blivit alltmer förvirrad av de svenska...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Statistik och dataanalys vs tekniskfysik/matem...</td>
+      <td>2021-07-26</td>
+      <td>26</td>
+      <td>1881</td>
+      <td>https://www.flashback.org/t3339121</td>
+      <td>Utbildning och studier</td>
+      <td>2021-07-05</td>
+      <td>Hej!\r\nJag skulle vilja rådfråga flashback om...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2254</th>
+      <td>Dataingenjör och Elektroingenjör!</td>
+      <td>2011-02-01</td>
+      <td>2</td>
+      <td>636</td>
+      <td>https://www.flashback.org/t1442789</td>
+      <td>Arbetsliv och arbetsmarknad</td>
+      <td>2011-02-01</td>
+      <td>Hej, jag är 20 bast och sitter och tänker på v...</td>
+    </tr>
+    <tr>
+      <th>2255</th>
+      <td>Arbetsprover för webbutvecklare(som söker jobb)</td>
+      <td>2011-02-01</td>
+      <td>7</td>
+      <td>559</td>
+      <td>https://www.flashback.org/t1439731</td>
+      <td>Arbetsliv och arbetsmarknad</td>
+      <td>2011-01-29</td>
+      <td>Jag söker jobb som programmerare/webbutvecklar...</td>
+    </tr>
+    <tr>
+      <th>2256</th>
+      <td>Vilka Utbildningar krävs för att bli Datatekni...</td>
+      <td>2011-01-30</td>
+      <td>11</td>
+      <td>1203</td>
+      <td>https://www.flashback.org/t1439587</td>
+      <td>Arbetsliv och arbetsmarknad</td>
+      <td>2011-01-29</td>
+      <td>Hej!\n\r\nSom rubriken lyder;\nVilka Utbildnin...</td>
+    </tr>
+    <tr>
+      <th>2257</th>
+      <td>Systemutvecklare i grannländerna</td>
+      <td>2011-01-27</td>
+      <td>1</td>
+      <td>240</td>
+      <td>https://www.flashback.org/t1436576</td>
+      <td>Arbetsliv och arbetsmarknad</td>
+      <td>2011-01-26</td>
+      <td>Är idag systemutvecklare på ett mindre företag...</td>
+    </tr>
+    <tr>
+      <th>2258</th>
+      <td>Chalmers eller umeå? (data)</td>
+      <td>2011-01-26</td>
+      <td>1</td>
+      <td>635</td>
+      <td>https://www.flashback.org/t992292</td>
+      <td>Arbetsliv och arbetsmarknad</td>
+      <td>2009-08-31</td>
+      <td>Har hittat två utbildningar som passar mig (då...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2259 rows × 8 columns</p>
 </div>
 </div>
 
@@ -14391,25 +14619,11 @@ westerlund@gmail.com <br>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load flashback_filtered_df from local storage so we don&#39;t have to re-scrape the web</span>
-<span class="n">flashback_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;flashback_filtered_df.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;windows-1252&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Diagram: Percentages of threads per categorie </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 
      </div>
